@@ -40,7 +40,6 @@ public class AddContactActivity extends AppCompatActivity implements ImageClickL
 
         dbHelper = new DBHelper(this);
 
-        Log.i("TTG", dbHelper.getAllContacts().size() + "");
 
         defineLayout();
 
@@ -77,6 +76,11 @@ public class AddContactActivity extends AppCompatActivity implements ImageClickL
 
         btnSaveContact.setOnClickListener(view -> {
             saveContact();
+        });
+
+        btnViewDetail.setOnClickListener(view -> {
+            Intent myIntent = new Intent(AddContactActivity.this, ContactViewDetailActivity.class);
+            startActivity(myIntent);
         });
     }
 
