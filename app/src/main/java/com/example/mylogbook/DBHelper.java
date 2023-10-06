@@ -92,7 +92,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from " + CONTACTS_TABLE_NAME, null );
+        Cursor res =  db.rawQuery( "select * from " + CONTACTS_TABLE_NAME + " ORDER BY "+ CONTACTS_COLUMN_NAME +" COLLATE NOCASE ASC", null );
         res.moveToFirst();
 
         while(res.isAfterLast() == false){

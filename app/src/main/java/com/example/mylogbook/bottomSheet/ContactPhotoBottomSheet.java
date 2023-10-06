@@ -46,6 +46,8 @@ public class ContactPhotoBottomSheet extends BottomSheetDialogFragment implement
 
         defineLayout();
 
+        setOnClickListener();
+
         setupRecyclerView();
 
         return v;
@@ -54,6 +56,12 @@ public class ContactPhotoBottomSheet extends BottomSheetDialogFragment implement
     private void defineLayout() {
         ivBack = v.findViewById(R.id.ivBack);
         rvContactPhoto = v.findViewById(R.id.rvContactPhoto);
+    }
+
+    private void setOnClickListener() {
+        ivBack.setOnClickListener(view -> {
+            dismiss();
+        });
     }
 
     private void setupRecyclerView(){

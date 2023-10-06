@@ -68,6 +68,7 @@ public class AddContactActivity extends AppCompatActivity implements ImageClickL
     }
 
     private void setOnClickListener() {
+
         btnChooseImage.setOnClickListener(view -> {
             ContactPhotoBottomSheet bottomSheet = new ContactPhotoBottomSheet(this);
             bottomSheet.show(getSupportFragmentManager(),
@@ -89,7 +90,17 @@ public class AddContactActivity extends AppCompatActivity implements ImageClickL
         String email = etEmail.getText().toString();
         String dateOfBirth = etDateOfBirth.getText().toString();
 
+        if( !isChoosePhoto ) {
+            Toast.makeText(this, "Please choose photo!",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( name.isEmpty() ) {
+            Toast.makeText(this, "Please enter name!",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         dbHelper.insertContact(name, email, selectedPhoto, dateOfBirth);
+        Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -97,6 +108,7 @@ public class AddContactActivity extends AppCompatActivity implements ImageClickL
         ivContactPhoto.setImageResource(Constant.CONTACT_PHOTOS[position]);
         selectedPhoto = Constant.CONTACT_PHOTOS[position];
         ivContactPhoto.setVisibility(View.VISIBLE);
+        isChoosePhoto = true;
     }
 
 }
